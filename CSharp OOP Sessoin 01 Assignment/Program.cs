@@ -1,5 +1,4 @@
-﻿//////////////////  Assignment 1 OOP /////////////////
-using CSharp_OOP_Sessoin_01_Assignment.Enums;
+﻿using CSharp_OOP_Sessoin_01_Assignment.Enums;
 using System.Collections.Specialized;
 
 namespace CSharp_OOP_Sessoin_01_Assignment
@@ -16,7 +15,8 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 	{
 		static void Main(string[] args)
 		{
-
+			
+			#region Assignment 01
 			#region Part 01 : 
 
 			#region Q1 Explain with code example how class and struct behave differently 
@@ -156,17 +156,134 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			//Console.WriteLine($"Type\t: {ticket.Type}");
 
 			#endregion
+			#endregion
 
 			#region Assignment02
 
+			#region Part 01 : Theoretical Questions
+
+			#region Q01: Consider the following class BankAcount: 
+			// public class BankAcount{
+			//		public string owner;
+			//      public double Balance;
+			//    
+			//      public void Withdraw(double amount){
+			//			Balance-= amount;
+			//      }
+			// }
+
+			// a)Identify at least two problems with this design from
+			//   an encapsulation perspective.
+
+			// answer: 
+			// first problem: that class fields are exposed for whole Project for direct access
+			// second problem: no validation before editing the balance field
+
+			//b) Describe how you would fix this class to follow proper encapsulation
+			//principles.You do not need to write the full code.
+
+			//answer:
+			// first we have to make Owner and Balance fields private member then controlling 
+			// accessing them by setters and getters or property
+			// second we have to check validation on amount before editing Balance field
+
+			//c) Explain why exposing fields directly(as public) is considered a bad practice
+			//in OOP.
+
+			//answer: 
+			// there is no control ovet who access the fields and who can't
+			// there is no validation on data
+			#endregion
+
+			#region Q02
+			//What is the difference between a field and a property in C#? Can a 
+			//property contain logic? Give an example of a read-only property that
+			//returns a calculated value.
+
+			//Asnwer: 
+			//field : is a direct data storage has no validation (just variable).
+			//property : is a class member not field or method it is look like a field but acts as method or behvior 
+			//          has no prameter ,can contains logic apply validation, achive encapsulation.
+
+			//Quesion02 q02 = new Quesion02(60);
+			//Console.WriteLine(q02.Grade);
+			//Console.WriteLine(q02.isPassed);
+			#endregion
+
+			#region Q03
+			//Look at the following code and answer the questions below:
+			//public class StudentRegister
+			//{
+			//	private string[] names = new string[5];
+
+			//	public string this[int index]
+			//	{
+			//		get { return names[index]; }
+			//		set { names[index] = value; }
+			//	}
+			//}
+
+			//a) What is `this[int index]` called? Explain its purpose.
+
+			//answer: it is an indexer lets an object accessed using array syntax[]
+
+			//b) What happens if someone writes `register[10] = "Ali";` ? How would you make the indexer
+			//   safer ?
+
+			// answer: this will give outOfRangeException to make it safer we should validate on index in
+			//         both set and get
+
+			//c) Can a class have more than one indexer? If yes, give an example of when that would be
+			//// useful
+
+			// answer: Yes, by indexer overloading 
+			// if you want to access member with index
+			// public string this[int idex], public string this[string ISBN]
+
+
+			#endregion
+
+			#region Q4
+			//Q4: Consider the following code and answer the questions below:
+			//public class Order
+			//{
+			//	public static int TotalOrders = 0;
+			//	public string Item;
+
+			//	public Order(string item)
+			//	{
+			//		Item = item;
+			//		TotalOrders++;
+			//	}
+			//}
+
+			// a) What does the `static` keyword mean on `TotalOrders`? How is it different from the `Item` field?
+
+			// answer:
+			// TotalOrder is a static field can access it without creating new object
+			// and all objects that will initiated from the Order class will share last value of it
+			// it different from the 'the' item field that item belongs to every instance and every
+			// instance has it's owen item 
+
+
+			//b) Can a static method inside `Order` access the `Item` field directly? Why or why not?
+
+			//answer: 
+
+			// No, becouse it belong to an instance object and static method used without creatin object.
+			#endregion
+
+			#endregion
+
+			#region Part 02 : Practical (Extending the Movie Ticket Booking System)
+
 			Cinema cinema = new Cinema(3);
-			Ticket ticket;
 
 			Console.WriteLine("========== Ticket Booking ==========\n");
 
 			for (int i = 0; i < 3; i++)
 			{
-				Console.WriteLine($"\nEnter Data For Ticket {i+1}");
+				Console.WriteLine($"\nEnter Data For Ticket {i + 1}");
 				//ticket = new Ticket();
 				string name;
 				do
@@ -200,7 +317,7 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 					isParsed = int.TryParse(Console.ReadLine(), out number);
 				} while (!isParsed);
 
-				
+
 
 
 				double price;
@@ -214,14 +331,14 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 
 
 				cinema[i] = new Ticket(name, type, new(seat[0], number), price);
-				
+
 			}
 
 			Console.WriteLine("\n=============== All Tickets ===============\n");
 
-			for(int i = 0; i < cinema.Count; i++)
+			for (int i = 0; i < cinema.Count; i++)
 			{
-				
+
 				Console.WriteLine(cinema[i]?.ToString());
 			}
 
@@ -234,7 +351,7 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 				movieName = Console.ReadLine()!;
 			} while (string.IsNullOrWhiteSpace(movieName));
 
-			for(int i = 0; i < cinema.Count; i++)
+			for (int i = 0; i < cinema.Count; i++)
 			{
 				if (cinema[i]?.MovieName?.ToLower() == movieName.ToLower())
 				{
@@ -251,6 +368,11 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			Console.WriteLine($"group discount for a group of 5 tickets at 80 EGP: {BookingHelper.CalcGroupDiscount(5, 80)}");
 
 			#endregion
+
+
+			#endregion
+
+
 		}
 
 
