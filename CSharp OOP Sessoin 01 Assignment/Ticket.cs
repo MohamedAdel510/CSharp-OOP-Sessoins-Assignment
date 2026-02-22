@@ -10,22 +10,59 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 {
 	internal class Ticket
 	{
-		public string? MovieName { get; set; }
+		//public string? MovieName { get; set; }
+		private string? _movieName;
 		public Ticket_Type Type { get; set; }
 		public SeatLocation seatLocation { get; set; }
-		public double Price { get; set; }
+		private double _price;
+
+		public int TicketId { get; private set; }
+
+
+		// Assignment 02 Task2 
+		#region Assignment 02
+		public string? MovieName
+		{
+			get
+			{
+				return _movieName;
+			}
+			set
+			{
+				if(!string.IsNullOrWhiteSpace(value))
+					_movieName = value;
+			}
+		}
+
+		public double Price
+		{
+			get { return _price; }
+			set
+			{
+				if(value >  0)
+					_price = value;
+			}
+		}
+
+		public double PriceAfterTax => _price * 0.86;
 		
-		// Constructor
+		private static int ticketCounter = 0;
+
+
+		#endregion
+
 		public Ticket(string MovieName, Ticket_Type Type, SeatLocation seatLocation, double Price)
 		{
 			this.MovieName = MovieName;
 			this.Type = Type;
 			this.seatLocation = seatLocation;
 			this.Price = Price;
+			ticketCounter++;
+			TicketId = ticketCounter;
 		}
 		public Ticket(string Name) : this(Name, Ticket_Type.Standard, new SeatLocation('A', 1) , 50)
 		{
-			this.MovieName = Name;
+			this.MovieName = Name;		
 		}
 
 		public Ticket(): this("Inception")
@@ -57,6 +94,17 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			Console.WriteLine($"Seat \t: {seatLocation.ToString()}");
 			Console.WriteLine($"Price\t: {Price}");
 			Console.WriteLine($"Total (14% tax) : {CalcTotal(14)}");
+		}
+
+
+		//Assignment 02
+		public static int GetTotalTicketsSold()
+		{
+			return ticketCounter;
+		}
+		public override string ToString()
+		{
+			return $"Ticket #{TicketId} | {MovieName} | {Type} | {MovieName} | Seat: {seatLocation.ToString()} | Price: {Price} EGP| After Tax: {CalcTotal(14)} EGP";
 		}
 	}
 }

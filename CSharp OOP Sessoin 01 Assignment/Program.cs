@@ -1,5 +1,6 @@
 ﻿//////////////////  Assignment 1 OOP /////////////////
 using CSharp_OOP_Sessoin_01_Assignment.Enums;
+using System.Collections.Specialized;
 
 namespace CSharp_OOP_Sessoin_01_Assignment
 {
@@ -11,7 +12,7 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 	}
 
 
-    internal class Program
+	internal class Program
 	{
 		static void Main(string[] args)
 		{
@@ -94,65 +95,160 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 
 			#region Part 02: Movie Ticket Booking System
 
-			Ticket ticket = new Ticket();
+			//Ticket ticket = new Ticket();
 
+			//do
+			//{
+			//	Console.Write("Enter Movie Name: ");
+			//	ticket.MovieName = Console.ReadLine();
+			//} while (string.IsNullOrWhiteSpace(ticket.MovieName));
+
+			//bool isParsed;
+			//Ticket_Type type;
+
+			//do
+			//{
+			//	Console.Write("Enter Ticket Type (Standard, VIP, IMAX): ");
+			//	isParsed = Enum.TryParse<Ticket_Type>(Console.ReadLine(), true, out type);
+			//} while (!isParsed || !Enum.IsDefined(typeof(Ticket_Type), type));
+			//ticket.Type = type;
+
+			//string seat;
+			//int number;
+
+			//do
+			//{
+			//	Console.Write("Enter Seat Row (A, B, C, ..., Z): ");
+			//	seat = Console.ReadLine()!.ToUpper();
+			//} while (seat.Length != 1 || string.IsNullOrWhiteSpace(seat));
+
+			//do
+			//{
+			//	Console.Write("Enter Seat Number: ");
+			//	isParsed = int.TryParse(Console.ReadLine(), out number);
+			//} while (!isParsed);
+
+			//ticket.seatLocation = new(seat[0], number);
+
+			//double price;
+			//do
+			//{
+			//	Console.Write("Enter Price: ");
+			//	isParsed = double.TryParse(Console.ReadLine(), out price);
+			//} while (!isParsed);
+
+			//ticket.Price = price;
+
+			//double discount;
+			//do
+			//{
+			//	Console.Write("Enter Discount Amount: ");
+			//	isParsed = double.TryParse(Console.ReadLine(), out discount);
+			//} while (!isParsed);
+
+			//ticket.PrintTicket();
+
+			//Console.WriteLine("===== After Discount =====");
+			//Console.WriteLine($"Discount Before: {discount}");
+			//ticket.ApplyDiscount(ref discount);
+			//Console.WriteLine($"Discount After: {discount}");
+			//Console.WriteLine($"Movie\t: {ticket.MovieName}");
+			//Console.WriteLine($"Type\t: {ticket.Type}");
+
+			#endregion
+
+			#region Assignment02
+
+			Cinema cinema = new Cinema(3);
+			Ticket ticket;
+
+			Console.WriteLine("========== Ticket Booking ==========\n");
+
+			for (int i = 0; i < 3; i++)
+			{
+				Console.WriteLine($"\nEnter Data For Ticket {i+1}");
+				//ticket = new Ticket();
+				string name;
+				do
+				{
+					Console.Write("Enter Movie Name: ");
+					name = Console.ReadLine()!;
+				} while (string.IsNullOrWhiteSpace(name));
+
+				bool isParsed;
+				Ticket_Type type;
+
+				do
+				{
+					Console.Write("Enter Ticket Type (0=Standard, 1=VIP, 2=IMAX): ");
+					isParsed = Enum.TryParse<Ticket_Type>(Console.ReadLine(), true, out type);
+				} while (!isParsed || !Enum.IsDefined(typeof(Ticket_Type), type));
+				//ticket.Type = type;
+
+				string seat;
+				int number;
+
+				do
+				{
+					Console.Write("Enter Seat Row (A, B, C, ..., Z): ");
+					seat = Console.ReadLine()!.ToUpper();
+				} while (seat.Length != 1 || string.IsNullOrWhiteSpace(seat));
+
+				do
+				{
+					Console.Write("Enter Seat Number: ");
+					isParsed = int.TryParse(Console.ReadLine(), out number);
+				} while (!isParsed);
+
+				
+
+
+				double price;
+				do
+				{
+					Console.Write("Enter Price: ");
+					isParsed = double.TryParse(Console.ReadLine(), out price);
+				} while (!isParsed);
+
+				//ticket.Price = price;
+
+
+				cinema[i] = new Ticket(name, type, new(seat[0], number), price);
+				
+			}
+
+			Console.WriteLine("\n=============== All Tickets ===============\n");
+
+			for(int i = 0; i < cinema.Count; i++)
+			{
+				
+				Console.WriteLine(cinema[i]?.ToString());
+			}
+
+			Console.WriteLine("\n============= Search by Movie =============\n");
+
+			string movieName;
 			do
 			{
-				Console.Write("Enter Movie Name: ");
-				ticket.MovieName = Console.ReadLine();
-			} while (string.IsNullOrWhiteSpace(ticket.MovieName));
+				Console.Write("Enter movie name to search: ");
+				movieName = Console.ReadLine()!;
+			} while (string.IsNullOrWhiteSpace(movieName));
 
-			bool isParsed;
-			Ticket_Type type;
-
-			do
+			for(int i = 0; i < cinema.Count; i++)
 			{
-				Console.Write("Enter Ticket Type (Standard, VIP, IMAX): ");
-				isParsed = Enum.TryParse<Ticket_Type>(Console.ReadLine(), true, out type);
-			} while (!isParsed || !Enum.IsDefined(typeof(Ticket_Type), type));
-			ticket.Type = type;
+				if (cinema[i]?.MovieName?.ToLower() == movieName.ToLower())
+				{
+					Console.WriteLine($"Found: {cinema[i]?.ToString()}");
+				}
+			}
 
-			string seat;
-			int number;
-			
-			do
-			{
-				Console.Write("Enter Seat Row (A, B, C, ..., Z): ");
-				seat = Console.ReadLine()!.ToUpper();
-			} while (seat.Length != 1 || string.IsNullOrWhiteSpace(seat));
-			
-			do
-			{
-				Console.Write("Enter Seat Number: ");
-				isParsed = int.TryParse(Console.ReadLine(), out number);
-			} while (!isParsed);
-
-			ticket.seatLocation = new(seat[0], number);
-
-			double price;
-			do
-			{
-				Console.Write("Enter Price: ");
-				isParsed = double.TryParse(Console.ReadLine(), out price);
-			} while (!isParsed);
-
-			ticket.Price = price;
-
-			double discount;
-			do
-			{
-				Console.Write("Enter Discount Amount: ");
-				isParsed = double.TryParse(Console.ReadLine(), out discount);
-			} while (!isParsed);
-
-			ticket.PrintTicket();
-
-			Console.WriteLine("===== After Discount =====");
-			Console.WriteLine($"Discount Before: {discount}");
-			ticket.ApplyDiscount(ref discount);
-			Console.WriteLine($"Discount After: {discount}");
-			Console.WriteLine($"Movie\t: {ticket.MovieName}");
-			Console.WriteLine($"Type\t: {ticket.Type}");
+			Console.WriteLine("\n=======================\n");
+			Console.WriteLine($"Total Ticket Sold: {Ticket.GetTotalTicketsSold()}");
+			Console.WriteLine("\n=======================\n");
+			Console.WriteLine($"Book 1 Refrence: {BookingHelper.GenerateBookingReference()}");
+			Console.WriteLine($"Book 2 Refrence: {BookingHelper.GenerateBookingReference()}");
+			Console.WriteLine("\n=======================\n");
+			Console.WriteLine($"group discount for a group of 5 tickets at 80 EGP: {BookingHelper.CalcGroupDiscount(5, 80)}");
 
 			#endregion
 		}
