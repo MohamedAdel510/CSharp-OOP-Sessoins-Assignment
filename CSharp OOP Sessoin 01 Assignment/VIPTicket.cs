@@ -24,5 +24,12 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 		{
 			return $"{base.ToString()} | LongAcess: {LongAccess} | Service Fee: {ServiceFee}";
 		}
+
+		#region Assignment 04
+		public override string PrintTicket()
+		{
+			return $"{base.PrintTicket()} | LongAcess: {LongAccess} | Service Fee: {ServiceFee}";
+		}
+		#endregion
 	}
 }

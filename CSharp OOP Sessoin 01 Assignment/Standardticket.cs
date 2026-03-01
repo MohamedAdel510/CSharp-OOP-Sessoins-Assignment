@@ -20,5 +20,12 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 		{
 			return $"{base.ToString()}| Seat Number: {SeatNumber}";
 		}
+
+		#region Assignment 04
+		public override string PrintTicket()
+		{
+			return $"{base.PrintTicket()}| Seat Number: {SeatNumber}";
+		}
+		#endregion
 	}
 }

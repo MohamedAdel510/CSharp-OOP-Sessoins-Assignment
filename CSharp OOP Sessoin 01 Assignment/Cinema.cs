@@ -67,12 +67,14 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			return false;
 		}
 
+
+		// Assignent 04
 		public void PrintAllTickets()
 		{
 			Console.WriteLine("========== All Tickets ==========");
 			for(int i = 0; i < _count;  i++)
 			{
-				Console.WriteLine(_ticket[i].ToString());
+				Console.WriteLine(_ticket[i].PrintTicket());
 			}
 		}
 

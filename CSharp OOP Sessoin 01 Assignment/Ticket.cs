@@ -86,15 +86,7 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			}
 		}
 
-		public void PrintTicket()
-		{
-			Console.WriteLine("\n===== Ticket Info =====");
-			Console.WriteLine($"Movie\t: {MovieName}");
-			Console.WriteLine($"Type \t: {Type}");
-			Console.WriteLine($"Seat \t: {seatLocation.ToString()}");
-			Console.WriteLine($"Price\t: {Price}");
-			Console.WriteLine($"Total (14% tax) : {CalcTotal(14)}");
-		}
+
 
 
 		//Assignment 02
@@ -102,6 +94,24 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 		{
 			return ticketCounter;
 		}
+
+
+		#region Assignment 04
+		public virtual string PrintTicket()
+		{
+			return $"Ticket #{TicketId} | {MovieName} | {Type} | {MovieName} | Price: {Price} EGP| After Tax: {CalcTotal(14)} EGP";
+		}
+
+		public void SetPrice(double price)
+		{
+			Price = price;
+		}
+		public void SetPrice(double basePrice, double multiplier) 
+		{
+			Price = basePrice * multiplier;
+		}
+		#endregion
+
 		public override string ToString()
 		{
 			return $"Ticket #{TicketId} | {MovieName} | {Type} | {MovieName} | Seat: {seatLocation.ToString()} | Price: {Price} EGP| After Tax: {CalcTotal(14)} EGP";

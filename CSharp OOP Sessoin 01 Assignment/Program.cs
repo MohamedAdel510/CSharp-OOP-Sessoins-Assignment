@@ -160,7 +160,7 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 			#endregion
 			#endregion
 
-			#region Assignment02
+			#region Assignment 02
 
 			#region Part 01 : Theoretical Questions
 
@@ -374,7 +374,6 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 
 			#endregion
 
-
 			#region Assignment 03
 
 			#region Part01 Theoretical Questions
@@ -424,33 +423,98 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 
 			#region Part 02 : Practical (Extending the Movie Ticket Booking System)
 
-			const int Size = 20;
-			Cinema cinema = new Cinema(Size, "Sun City");
-			cinema.OpenCinema();
-			cinema.StatrProjector();
+			//const int Size = 20;
+			//Cinema cinema = new Cinema(Size, "Sun City");
+			//cinema.OpenCinema();
+			//cinema.StatrProjector();
 
-			Ticket standard = new Standardticket("Ay7aga");
-			Ticket vip = new VIPTicket(true, 20, "Avengers", Ticket_Type.VIP, new('B', 2), 180);
-			Ticket iMax = new IMAXTicket(true, "Dune", Ticket_Type.IMAX, new('C', 3), 200);
+			//Ticket standard = new Standardticket("Ay7aga");
+			//Ticket vip = new VIPTicket(true, 20, "Avengers", Ticket_Type.VIP, new('B', 2), 180);
+			//Ticket iMax = new IMAXTicket(true, "Dune", Ticket_Type.IMAX, new('C', 3), 200);
 
-			cinema.AddTicket(standard);
-			cinema.AddTicket(vip);
-			cinema.AddTicket(iMax);
+			//cinema.AddTicket(standard);
+			//cinema.AddTicket(vip);
+			//cinema.AddTicket(iMax);
 
-			cinema.PrintAllTickets();
+			//cinema.PrintAllTickets();
 
-			Console.WriteLine("========== Statistics ==========");
-			Console.WriteLine($"Totoal Ticket Created: {Ticket.GetTotalTicketsSold()}");
-			Console.WriteLine();
-			Console.WriteLine($"Booking Ref 1: {BookingHelper.GenerateBookingReference()}");
-			Console.WriteLine($"Booking Ref 2: {BookingHelper.GenerateBookingReference()}");
+			//Console.WriteLine("========== Statistics ==========");
+			//Console.WriteLine($"Totoal Ticket Created: {Ticket.GetTotalTicketsSold()}");
+			//Console.WriteLine();
+			//Console.WriteLine($"Booking Ref 1: {BookingHelper.GenerateBookingReference()}");
+			//Console.WriteLine($"Booking Ref 2: {BookingHelper.GenerateBookingReference()}");
 			#endregion
+
+			#endregion
+
+			#region Assignment 04
+
+			#region Part 01 : Theoretical Questions
+			#region Q1: What is the difference between static binding and dynamic binding? When does each one happen ?
+			// Answer: Binding happenes when we have ref of parent class referes to child class
+			// Static Binding: means compiler will decide which function will be called in compile time
+			// Dynamic Binding: Means CLR will decide which function will be called in run time.
+			#endregion
+
+			#region Q2 :  What is the difference between method overloading and method overriding?
+			// Method overlaoding: rewriten function with same name but different in signature, 
+			//                     type, order or number of parameters, different behaviour and it happend in compile time, compile time polymorphism
+			//                     (static Binding).
+
+			// Method overriding: rewrriten function with same signature different in behaviour, run time polymorphism
+			//                    and it happens in run time (Dynamic Bainding).
+			#endregion
+
+			#region Q3 : What keywords are used for Method Overriding? What does each one mean ?
+
+			// virtual, override
+			// virtual used to declare a funciton as virtual function to be overriden in subclass
+			// then clr will call function based on object to achive run polymorphism.
+			// override keywords used to override method in subclasses with differetn behaviour.
+
+			#endregion
+			#endregion
+
+
+			#region Part 02 : Practical (Extending the Movie Ticket Booking System)
+			//const int Size = 20;
+			//Cinema cinema = new Cinema(Size, "Sun City");
+			//cinema.OpenCinema();
+			//cinema.StatrProjector();
+
+
+
+			//Standardticket standard = new Standardticket("Ay7aga");
+			//standard.SetPrice(150);
+			//VIPTicket vip = new VIPTicket(true, 20, "Avengers", Ticket_Type.VIP, new('B', 2), 180);
+			//vip.SetPrice(100, 1.5);
+			//IMAXTicket iMax = new IMAXTicket(true, "Dune", Ticket_Type.IMAX, new('C', 3), 200);
+
+			//cinema.AddTicket(standard);
+			//cinema.AddTicket(vip);
+			//cinema.AddTicket(iMax);
+
+			//cinema.PrintAllTickets();
+
+			//Console.WriteLine("========== Process Single Ticket ==========");
+			//Console.WriteLine(ProcessTicket(cinema[0]!));
+			//Console.WriteLine(ProcessTicket(cinema[1]!));
+			//Console.WriteLine(ProcessTicket(cinema[2]!));
+			
+
+			#endregion
+
 
 			#endregion
 
 		}
 
-
+		#region Assignment 04
+		public static string ProcessTicket(Ticket ticket)
+		{
+			return ticket.PrintTicket();
+		}
+		#endregion
 
 	}
 }

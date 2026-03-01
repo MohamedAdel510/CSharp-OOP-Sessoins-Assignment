@@ -23,5 +23,12 @@ namespace CSharp_OOP_Sessoin_01_Assignment
 		{
 			return $"{base.ToString()}| IMax 3D: {Is_3D_Output}";
 		}
+
+		#region Assignment 04
+		public override string PrintTicket()
+		{
+			return $"{base.PrintTicket()} | IMax 3D: {Is_3D_Output}";
+		}
+		#endregion
 	}
 }
